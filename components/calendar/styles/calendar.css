@@ -1,0 +1,1865 @@
+/* components/calendar/styles/calendar.css */
+
+/* CRITICAL: COMPLETELY DISABLE ALL ROW-BASED HOVER EFFECTS */
+/* This must be at the very top to override FullCalendar's default hover behavior */
+.fc-timegrid-slot:hover,
+.fc-timegrid-slot-lane:hover,
+.fc-timegrid-slot-label:hover,
+.fc-timegrid tr:hover,
+.fc-timegrid tbody tr:hover,
+.fc-timegrid-slot:hover ~ *,
+.fc-timegrid-slot-lane:hover ~ *,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot,
+.fc-timegrid-slot-lane:hover ~ .fc-timegrid-slot,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot-lane,
+.fc-timegrid-slot-lane:hover ~ .fc-timegrid-slot-lane,
+.fc-timegrid tr:hover .fc-timegrid-slot,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot,
+.fc-timegrid tr:hover .fc-timegrid-slot-lane,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot-lane,
+.fc-timegrid tr:hover .fc-timegrid-slot-label,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot-label,
+.fc-timegrid-slot:hover .fc-timegrid-slot-lane,
+.fc-timegrid-slot-lane:hover .fc-timegrid-slot-label,
+.fc-timegrid-slot:hover .fc-timegrid-slot-label,
+.fc-timegrid-slot-lane:hover .fc-timegrid-slot-label,
+.fc-highlight,
+.fc-highlight-skeleton,
+.fc-highlight-more,
+.fc-highlight-more-cell,
+.fc-timegrid-slot.fc-highlight,
+.fc-timegrid-slot-lane.fc-highlight,
+.fc-timegrid-slot-label.fc-highlight,
+.fc-timegrid tr.fc-highlight,
+.fc-timegrid tbody tr.fc-highlight,
+/* Resource view specific row hover overrides */
+.fc-resource-timeGridDay-view .fc-timegrid tr:hover,
+.fc-resource-timeGridWeek-view .fc-timegrid tr:hover,
+.fc-resource-timeGridDay-view .fc-timegrid tbody tr:hover,
+.fc-resource-timeGridWeek-view .fc-timegrid tbody tr:hover,
+.fc-resource-timeGridDay-view .fc-timegrid tr:hover .fc-timegrid-slot,
+.fc-resource-timeGridWeek-view .fc-timegrid tr:hover .fc-timegrid-slot,
+.fc-resource-timeGridDay-view .fc-timegrid tbody tr:hover .fc-timegrid-slot,
+.fc-resource-timeGridWeek-view .fc-timegrid tbody tr:hover .fc-timegrid-slot,
+.fc-resource-timeGridDay-view .fc-timegrid tr:hover .fc-timegrid-slot-lane,
+.fc-resource-timeGridWeek-view .fc-timegrid tr:hover .fc-timegrid-slot-lane,
+.fc-resource-timeGridDay-view .fc-timegrid tbody tr:hover .fc-timegrid-slot-lane,
+.fc-resource-timeGridWeek-view .fc-timegrid tbody tr:hover .fc-timegrid-slot-lane {
+  background-color: transparent !important;
+  background: transparent !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  background-origin: unset !important;
+  background-size: unset !important;
+  background-repeat: unset !important;
+  background-position: unset !important;
+  background-attachment: unset !important;
+}
+
+/* CELL-SPECIFIC HOVER: Only allow individual time slot hover effects */
+.fc-timegrid-slot:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Ensure all other time slots remain transparent */
+.fc-timegrid-slot:not(:hover) {
+  background-color: transparent !important;
+}
+
+/* Hide appointments counter and toolbar elements */
+.appointments-counter,
+.today-text,
+.fc-toolbar,
+.fc-header-toolbar,
+.fc-toolbar-title,
+.fc-view-title,
+.fc-toolbar-chunk,
+.fc-col-header,
+.fc-col-header-cell,
+.fc-scrollgrid-section-header,
+.fc-toolbar-ltr, 
+.fc-toolbar-center, 
+.fc-toolbar-left, 
+.fc-toolbar-right,
+.fc h2, 
+.fc-list-empty, 
+.fc-day-header, 
+.fc-widget-header {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Animation keyframes */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Custom FullCalendar Styling */
+.fc {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 100% !important;
+  min-width: 0 !important;
+  flex: 1 !important;
+}
+
+/* Responsive table layout */
+.fc-scrollgrid,
+.fc-scrollgrid-section,
+.fc-scrollgrid-sync-table,
+.fc-timegrid,
+.fc-timegrid-body,
+.fc-timegrid-cols,
+.fc-view,
+.fc-view-harness,
+.fc-view-harness-active {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.fc-button {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+  font-weight: 500 !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.2s !important;
+  height: auto !important;
+}
+
+.fc-button:hover:not(:disabled) {
+  background-color: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+.fc-button:focus {
+  box-shadow: 0 0 0 2px #dbeafe !important;
+}
+
+.fc-button-active {
+  background-color: #3b82f6 !important;
+  border-color: #2563eb !important;
+  color: white !important;
+}
+
+.fc-button-active:hover {
+  background-color: #2563eb !important;
+  border-color: #1d4ed8 !important;
+}
+
+.fc-day-today .fc-col-header-cell-cushion {
+  color: #3b82f6 !important;
+  font-weight: 600 !important;
+}
+
+.fc-timegrid-slot {
+  border-color: #f1f5f9 !important;
+  height: 2rem !important;
+}
+
+.fc-timegrid-slot-label {
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  background: #f8fafc !important;
+  border-right: 1px solid #e2e8f0 !important;
+  text-align: right !important;
+  padding-right: 8px !important;
+}
+
+.fc-timegrid-axis {
+  background: #f8fafc !important;
+  border-right: 1px solid #e2e8f0 !important;
+  width: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+}
+
+.fc-timegrid-slot-lane {
+  border-left: none !important;
+}
+
+.fc-event {
+  border-radius: 0.375rem !important;
+  border: none !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  padding: 0.25rem 0.5rem !important;
+  cursor: grab !important;
+  transition: all 0.2s !important;
+}
+
+.fc-event:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.fc-event:active {
+  cursor: grabbing !important;
+}
+
+.fc-event.fc-event-dragging {
+  cursor: grabbing !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
+  z-index: 999 !important;
+  opacity: 0.9 !important;
+  pointer-events: none !important;
+}
+
+.fc-event-dragging-mirror {
+  pointer-events: none !important;
+  transform: none !important;
+}
+
+.fc-event.fc-event-resizing {
+  cursor: ns-resize !important;
+}
+
+.fc-event-title {
+  font-weight: 500 !important;
+  white-space: pre-line !important;
+  line-height: 1.3 !important;
+  font-size: 16px !important;
+  padding: 3px 6px !important;
+}
+
+/* Force line breaks for all event titles with higher specificity */
+.fc-event .fc-event-title,
+.fc-timegrid-event .fc-event-title,
+.fc-resource-timeGridDay-view .fc-event-title,
+.fc-resource-timeGridWeek-view .fc-event-title {
+  white-space: pre-line !important;
+  line-height: 1.3 !important;
+  font-size: 16px !important;
+  padding: 3px 6px !important;
+}
+
+/* Ultra-specific targeting to override any other styles */
+.fc .fc-event .fc-event-title,
+.fc .fc-timegrid-event .fc-event-title,
+.fc .fc-resource-timeGridDay-view .fc-event-title,
+.fc .fc-resource-timeGridWeek-view .fc-event-title,
+.fc .fc-timegrid .fc-event .fc-event-title,
+.fc .fc-timegrid .fc-timegrid-event .fc-event-title {
+  white-space: pre-line !important;
+  line-height: 1.3 !important;
+  font-size: 16px !important;
+  padding: 3px 6px !important;
+  text-overflow: unset !important;
+  overflow: visible !important;
+}
+
+/* Force refresh with unique identifier */
+.fc-event-title[data-line-breaks="enabled"] {
+  white-space: pre-line !important;
+  line-height: 1.3 !important;
+  font-size: 16px !important;
+  padding: 3px 6px !important;
+}
+
+/* Multi-line event styling */
+.multi-line-event .fc-event-title {
+  white-space: pre-line !important;
+  line-height: 1.3 !important;
+  font-size: 16px !important;
+  padding: 3px 6px !important;
+  text-overflow: unset !important;
+  overflow: visible !important;
+}
+
+.fc-timegrid-event {
+  margin: 1px 0 !important;
+  width: calc(100% - 2px) !important;
+  box-sizing: border-box !important;
+}
+
+.fc-event-resizer {
+  display: block !important;
+  height: 8px !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 0 0 0.375rem 0.375rem !important;
+}
+
+.fc-event-resizer:hover {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.fc-daygrid-day-number {
+  color: #374151 !important;
+  font-weight: 600 !important;
+}
+
+.fc-day-today {
+  background-color: #ffffff !important;
+}
+
+.fc-addButton-button {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.fc-addButton-button:hover {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.fc-scrollgrid {
+  border-color: #e2e8f0 !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  height: 100% !important;
+  border-bottom: none !important;
+  width: 100% !important;
+}
+
+.fc-scrollgrid-sync-table {
+  border-color: #e2e8f0 !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.fc-timegrid-divider {
+  border-color: #e2e8f0 !important;
+  padding: 0 !important;
+}
+
+/* Remove momentum scrolling for stiff feel */
+.fc-scroller {
+  -webkit-overflow-scrolling: auto !important;
+  scroll-behavior: auto !important;
+  overscroll-behavior: none !important;
+  overflow-y: auto !important;
+  height: calc(100vh - 180px) !important;
+  padding-bottom: 0 !important;
+  width: 100% !important;
+}
+
+.fc-timegrid-body {
+  min-height: calc(100vh - 180px) !important;
+  padding-bottom: 0 !important;
+  width: 100% !important;
+}
+
+.fc-timegrid-slots {
+  padding-bottom: 0 !important;
+  width: 100% !important;
+}
+
+.fc-scrollgrid-section-body {
+  padding-bottom: 0 !important;
+  width: 100% !important;
+}
+
+.fc-scroller-liquid-absolute {
+  bottom: 0 !important;
+  width: 100% !important;
+}
+
+.fc-timegrid-axis-cushion {
+  padding-bottom: 0 !important;
+}
+
+.fc-scrollgrid-section:last-child {
+  border-bottom: none !important;
+}
+
+/* Force full width */
+.fc-view-harness {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.fc-timegrid {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Now Indicator - Fresha-style positioning */
+.fc-timegrid-now-indicator-line {
+  border-color: #ef4444 !important;
+  border-width: 1.5px !important;
+  position: relative !important;
+  z-index: 100 !important;
+  left: 0 !important;
+  width: calc(100% + 8px) !important;
+  margin-left: -8px !important;
+}
+
+.fc-timegrid-now-indicator-arrow {
+  display: none !important;
+}
+
+.fc-timegrid-now-indicator-container {
+  overflow: visible !important;
+}
+
+.fc-timegrid-now-indicator-line::before {
+  content: attr(data-time) !important;
+  position: absolute !important;
+  left: -63px !important;
+  top: -12px !important;
+  background: #ef4444 !important;
+  color: white !important;
+  padding: 6px 12px !important;
+  border-radius: 18px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3) !important;
+  z-index: 1001 !important;
+  text-align: center !important;
+}
+
+/* Day view specific fixes */
+.fc-timeGridDay .fc-timegrid-now-indicator-line {
+  border-color: #ef4444 !important;
+  border-width: 1.5px !important;
+  width: 100% !important;
+}
+
+.fc-timeGridDay .fc-timegrid-now-indicator-arrow {
+  display: none !important;
+}
+
+.fc-highlight {
+  background-color: #dbeafe !important;
+  opacity: 0.8 !important;
+}
+
+/* Improved responsive design */
+@media (max-width: 768px) {
+  .fc-toolbar {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  .fc-toolbar-chunk {
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .fc-button {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Remove time column for resource views */
+.fc-resource-timeGridDay-view .fc-timegrid-axis,
+.fc-resource-timeGridWeek-view .fc-timegrid-axis {
+  display: none !important;
+}
+
+/* Ensure resource columns have proper boundaries */
+.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc-resource-timeGridWeek-view .fc-timegrid-col {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  position: relative !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  contain: layout style paint !important;
+  isolation: isolate !important;
+}
+
+/* Ensure column content doesn't overflow */
+.fc-resource-timeGridDay-view .fc-timegrid-col-events,
+.fc-resource-timeGridWeek-view .fc-timegrid-col-events {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Aggressive overflow prevention for all event elements */
+.fc-resource-timeGridDay-view .fc-event,
+.fc-resource-timeGridWeek-view .fc-event {
+  max-width: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.fc-resource-timeGridDay-view .fc-event-main,
+.fc-resource-timeGridWeek-view .fc-event-main {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Ensure event content doesn't cause overflow */
+.fc-resource-timeGridDay-view .fc-event-title,
+.fc-resource-timeGridWeek-view .fc-event-title {
+  max-width: 100% !important;
+  overflow: hidden !important;
+  white-space: pre-line !important;
+  line-height: 1.2 !important;
+  font-size: 11px !important;
+  padding: 2px 4px !important;
+}
+
+/* Ultra-specific targeting for appointment containment */
+.fc-resource-timeGridDay-view .fc-timegrid-col .fc-timegrid-event,
+.fc-resource-timeGridWeek-view .fc-timegrid-col .fc-timegrid-event {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  clip-path: inset(0 0 0 0) !important;
+  contain: layout style paint !important;
+}
+
+/* Ensure all event-related elements are contained */
+.fc-resource-timeGridDay-view .fc-timegrid-col *,
+.fc-resource-timeGridWeek-view .fc-timegrid-col * {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Force column boundaries */
+.fc-resource-timeGridDay-view .fc-timegrid-col::after,
+.fc-resource-timeGridWeek-view .fc-timegrid-col::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 1px !important;
+  height: 100% !important;
+  background: transparent !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+}
+
+/* Force equal distribution for resource columns */
+.fc-resource-timeGridDay-view .fc-timegrid-col-frame,
+.fc-resource-timeGridWeek-view .fc-timegrid-col-frame {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  position: relative !important;
+  contain: layout style paint !important;
+}
+
+/* Dynamic column width adjustment for different worker counts */
+.fc-resource-timeGridDay-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(1),
+.fc-resource-timeGridWeek-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(1) {
+  width: 50% !important; /* 2 workers */
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(2),
+.fc-resource-timeGridWeek-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(2) {
+  width: 50% !important; /* 2 workers */
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(3),
+.fc-resource-timeGridWeek-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(3) {
+  width: 33.333% !important; /* 3 workers */
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(4),
+.fc-resource-timeGridWeek-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(4) {
+  width: 25% !important; /* 4 workers */
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(5),
+.fc-resource-timeGridWeek-view .fc-timegrid-col:not(.fc-timegrid-axis):nth-child(5) {
+  width: 20% !important; /* 5 workers */
+}
+
+/* Ensure column dividers extend through the entire calendar height */
+.fc-timegrid-col {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.fc-timegrid-col-frame {
+  position: relative !important;
+  overflow: visible !important;
+  height: 100% !important;
+}
+
+/* Enhanced column dividers for clear visual separation */
+.custom-column-divider {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 8px !important;
+  height: 100vh !important;
+  background: linear-gradient(to bottom, #ef4444 0%, #dc2626 50%, #ef4444 100%) !important;
+  z-index: 9999 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  display: block !important;
+  visibility: visible !important;
+  transform: translateZ(0) !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.6) !important;
+  border-radius: 4px !important;
+}
+
+/* Fallback column dividers using CSS pseudo-elements */
+.fc-resource-timeGridDay-view .fc-timegrid-col:not(:last-child)::after,
+.fc-resource-timeGridWeek-view .fc-timegrid-col:not(:last-child)::after,
+.fc-timeGridDay-view .fc-timegrid-col:not(:last-child)::after,
+.fc-timeGridWeek-view .fc-timegrid-col:not(:last-child)::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 8px !important;
+  height: 100vh !important;
+  background: linear-gradient(to bottom, #ef4444 0%, #dc2626 50%, #ef4444 100%) !important;
+  z-index: 9999 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  transform: translateZ(0) !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.6) !important;
+  border-radius: 4px !important;
+}
+
+
+
+/* Ensure the calendar grid has proper column separation */
+.fc-timegrid-cols {
+  border-right: 1px solid #e5e7eb !important;
+}
+
+/* Force column boundaries to be visible in the main calendar grid */
+.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc-resource-timeGridWeek-view .fc-timegrid-col,
+.fc-timeGridDay-view .fc-timegrid-col,
+.fc-timeGridWeek-view .fc-timegrid-col {
+  border-right: 1px solid #e5e7eb !important;
+  position: relative !important;
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-col:last-child,
+.fc-resource-timeGridWeek-view .fc-timegrid-col:last-child {
+  border-right: none !important;
+}
+
+/* Ensure column dividers are visible in the main grid area */
+.fc-resource-timeGridDay-view .fc-timegrid-body .fc-timegrid-col,
+.fc-resource-timeGridWeek-view .fc-timegrid-body .fc-timegrid-col,
+.fc-timeGridDay-view .fc-timegrid-body .fc-timegrid-col,
+.fc-timeGridWeek-view .fc-timegrid-body .fc-timegrid-col {
+  border-right: 1px solid #e5e7eb !important;
+  position: relative !important;
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-body .fc-timegrid-col:last-child,
+.fc-resource-timeGridWeek-view .fc-timegrid-body .fc-timegrid-col:last-child {
+  border-right: none !important;
+}
+
+/* Force column dividers in the main grid slots */
+.fc-resource-timeGridDay-view .fc-timegrid-slot,
+.fc-resource-timeGridWeek-view .fc-timegrid-slot,
+.fc-timeGridDay-view .fc-timegrid-slot,
+.fc-timeGridWeek-view .fc-timegrid-slot {
+  border-right: 1px solid #e5e7eb !important;
+  position: relative !important;
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-slot:last-child,
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:last-child {
+  border-right: none !important;
+}
+
+/* Add subtle animation to column dividers */
+@keyframes columnDividerPulse {
+  0% {
+    opacity: 0.8;
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+  }
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+  }
+}
+
+.custom-column-divider {
+  animation: columnDividerPulse 3s ease-in-out infinite !important;
+}
+
+/* Ensure column dividers are visible during drag operations */
+.fc-event.fc-event-dragging ~ .custom-column-divider,
+.fc-event.fc-event-resizing ~ .custom-column-divider {
+  animation: none !important;
+  background: linear-gradient(to bottom, #ef4444 0%, #dc2626 50%, #ef4444 100%) !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.5) !important;
+  width: 6px !important;
+}
+
+/* Ensure proper column boundaries during drag operations */
+.fc-event.fc-event-dragging {
+  max-width: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  z-index: 9999 !important;
+}
+
+/* Fix column width distribution for proper visual separation */
+.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc-resource-timeGridWeek-view .fc-timegrid-col {
+  width: calc(100% / var(--fc-resource-count, 1)) !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  overflow: visible !important;
+  flex: 1 !important;
+}
+
+/* Ensure proper column spacing and boundaries */
+.fc-timegrid-cols {
+  display: flex !important;
+  width: 100% !important;
+  position: relative !important;
+}
+
+/* Fix appointment containment within columns */
+.fc-timegrid-event {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+}
+
+/* Ensure appointments align properly with column dividers in resource views */
+.fc-resource-timeGridDay-view .fc-timegrid-event,
+.fc-resource-timeGridWeek-view .fc-timegrid-event {
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  border-radius: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  clip-path: inset(0 0 0 0) !important;
+}
+
+/* Force appointments to stay within column boundaries */
+.fc-resource-timeGridDay-view .fc-timegrid-event-harness,
+.fc-resource-timeGridWeek-view .fc-timegrid-event-harness {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+}
+
+/* Remove any padding from event containers */
+.fc-resource-timeGridDay-view .fc-timegrid-event-harness,
+.fc-resource-timeGridWeek-view .fc-timegrid-event-harness {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Ensure event content fills the full width */
+.fc-resource-timeGridDay-view .fc-event-main,
+.fc-resource-timeGridWeek-view .fc-event-main {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure appointment containers don't overflow column boundaries */
+.fc-resource-timeGridDay-view .fc-timegrid-col-events,
+.fc-resource-timeGridWeek-view .fc-timegrid-col-events {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure column dividers align perfectly with appointment boundaries */
+.custom-column-divider {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 1px !important;
+  height: 100% !important;
+  background-color: #9ca3af !important;
+  z-index: 1000 !important;
+  pointer-events: none !important;
+  transform: translateZ(0) !important; /* Force hardware acceleration */
+}
+
+/* Force column dividers to be visible using CSS pseudo-elements as fallback */
+.fc-resource-timeGridDay-view .fc-timegrid-col:not(:last-child)::after,
+.fc-resource-timeGridWeek-view .fc-timegrid-col:not(:last-child)::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 1px !important;
+  height: 100% !important;
+  background-color: #9ca3af !important;
+  z-index: 1000 !important;
+  pointer-events: none !important;
+}
+
+/* Ensure the calendar grid has proper column separation */
+.fc-timegrid-cols {
+  border-right: 4px solid #8b5cf6 !important;
+}
+
+/* Force column boundaries to be visible */
+.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc-resource-timeGridWeek-view .fc-timegrid-col {
+  border-right: 1px solid #9ca3af !important;
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-col:last-child,
+.fc-resource-timeGridWeek-view .fc-timegrid-col:last-child {
+  border-right: none !important;
+}
+
+/* Header column dividers */
+.custom-header-divider {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 4px !important;
+  height: 100% !important;
+  background: linear-gradient(to bottom, #8b5cf6 0%, #7c3aed 50%, #8b5cf6 100%) !important;
+  z-index: 1000 !important;
+  pointer-events: none !important;
+  transform: translateZ(0) !important; /* Force hardware acceleration */
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.3) !important;
+  border-radius: 2px !important;
+}
+
+/* Ensure column dividers extend through the entire calendar */
+.fc-timegrid-col {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* Fix drag and drop issues by ensuring proper column boundaries */
+.fc-timegrid-col-frame {
+  position: relative !important;
+  overflow: visible !important;
+  height: 100% !important;
+}
+
+/* Ensure events don't overflow column boundaries during drag */
+.fc-event.fc-event-dragging {
+  max-width: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  z-index: 9999 !important;
+}
+
+/* Fix column width distribution for proper visual separation */
+.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc-resource-timeGridWeek-view .fc-timegrid-col {
+  width: calc(100% / var(--fc-resource-count, 1)) !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  overflow: visible !important;
+  flex: 1 !important;
+}
+
+/* Ensure proper column spacing and boundaries */
+.fc-timegrid-cols {
+  display: flex !important;
+  width: 100% !important;
+  position: relative !important;
+}
+
+/* Fix appointment containment within columns */
+.fc-timegrid-event {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+}
+
+/* Ensure column dividers are positioned correctly */
+.fc-timegrid-col {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.fc-timegrid-col-frame {
+  position: relative !important;
+  overflow: visible !important;
+  height: 100% !important;
+}
+
+/* Ensure proper column boundaries during drag operations */
+.fc-event.fc-event-dragging {
+  max-width: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  z-index: 9999 !important;
+}
+
+/* Custom staff header alignment with calendar grid */
+.custom-staff-header {
+  display: flex !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure custom header columns match calendar grid exactly */
+.custom-staff-header > div {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+}
+
+/* Dynamic width matching for custom header */
+.custom-staff-header > div:nth-child(1) {
+  width: 50% !important; /* 2 workers */
+}
+
+.custom-staff-header > div:nth-child(2) {
+  width: 50% !important; /* 2 workers */
+}
+
+.custom-staff-header > div:nth-child(3) {
+  width: 33.333% !important; /* 3 workers */
+}
+
+.custom-staff-header > div:nth-child(4) {
+  width: 25% !important; /* 4 workers */
+}
+
+.custom-staff-header > div:nth-child(5) {
+  width: 20% !important; /* 5 workers */
+}
+
+/* Single worker case */
+.custom-staff-header:has(> div:only-child) > div {
+  width: 100% !important;
+}
+
+/* Enhanced visual separation for multiple workers */
+.fc-resource-timeGridDay-view .fc-timegrid-col:not(:last-child),
+.fc-resource-timeGridWeek-view .fc-timegrid-col:not(:last-child) {
+  border-right: 4px solid #4b5563 !important;
+  position: relative !important;
+}
+
+/* Add subtle background color difference between columns for better visual separation */
+.fc-resource-timeGridDay-view .fc-timegrid-col:nth-child(even),
+.fc-resource-timeGridWeek-view .fc-timegrid-col:nth-child(even) {
+  background-color: rgba(249, 250, 251, 0.5) !important;
+}
+
+/* Add alternating background colors for better visual separation */
+.fc-resource-timeGridDay-view .fc-timegrid-col:nth-child(odd),
+.fc-resource-timeGridWeek-view .fc-timegrid-col:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Clean background for better visibility of dividers */
+.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc-resource-timeGridWeek-view .fc-timegrid-col,
+.fc-timeGridDay-view .fc-timegrid-col,
+.fc-timeGridWeek-view .fc-timegrid-col {
+  background: #ffffff !important;
+}
+
+/* Ensure appointments have proper spacing from column dividers */
+.fc-resource-timeGridDay-view .fc-timegrid-event,
+.fc-resource-timeGridWeek-view .fc-timegrid-event {
+  margin: 1px 4px !important;
+  width: calc(100% - 8px) !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure appointments have proper spacing from column dividers */
+.fc-resource-timeGridDay-view .fc-timegrid-event,
+.fc-resource-timeGridWeek-view .fc-timegrid-event {
+  margin: 1px 2px !important;
+  width: calc(100% - 4px) !important;
+  box-sizing: border-box !important;
+}
+
+/* CELL-SPECIFIC HOVER EFFECT: Only highlight the individual time slot being hovered */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:hover,
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:hover {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Ensure all other time slots remain transparent */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:not(:hover) {
+  background-color: transparent !important;
+}
+
+/* CRITICAL: Disable any row-based hover effects from FullCalendar defaults */
+.fc-timegrid-slot-lane:hover,
+.fc-timegrid-slot-label:hover {
+  background-color: transparent !important;
+}
+
+/* Disable any FullCalendar default row hover effects */
+.fc-timegrid tr:hover,
+.fc-timegrid tbody tr:hover {
+  background-color: transparent !important;
+}
+
+/* Ensure that hovering on a time slot only affects that specific cell */
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot {
+  background-color: transparent !important;
+}
+
+/* Ensure column dividers are always visible during interactions */
+.fc-event.fc-event-dragging ~ .custom-column-divider,
+.fc-event.fc-event-resizing ~ .custom-column-divider {
+  z-index: 1001 !important;
+  background-color: #9ca3af !important;
+  width: 2px !important;
+  height: 100vh !important;
+  transform: translateZ(0) !important;
+}
+
+/* Ensure proper positioning during drag operations */
+.fc-timegrid-col {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.fc-timegrid-col-frame {
+  position: relative !important;
+  overflow: visible !important;
+  height: 100% !important;
+}
+
+/* Add subtle animation to column dividers for better visibility */
+@keyframes columnDividerGlow {
+  0% {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1) !important;
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(107, 114, 128, 0.2) !important;
+  }
+  100% {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+.custom-column-divider,
+.custom-header-divider {
+  animation: columnDividerGlow 3s ease-in-out infinite !important;
+}
+
+/* Ensure column dividers are always visible */
+.fc-timegrid-col .custom-column-divider,
+.fc-timegrid-col::after {
+  background-color: #e5e7eb !important;
+  width: 1px !important;
+  animation: columnDividerGlow 3s ease-in-out infinite !important;
+}
+
+/* Style for slot dividers */
+.custom-slot-divider {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 2px !important;
+  height: 100% !important;
+  background: linear-gradient(to bottom, #9ca3af 0%, #6b7280 50%, #9ca3af 100%) !important;
+  z-index: 999 !important;
+  pointer-events: none !important;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) !important;
+  transform: translateZ(0) !important;
+}
+
+/* Ensure main calendar grid has prominent column separation */
+.fc-resource-timeGridDay-view .fc-timegrid-body,
+.fc-resource-timeGridWeek-view .fc-timegrid-body {
+  border-right: 3px solid #6b7280 !important;
+}
+
+/* Force column boundaries in the main grid */
+.fc-resource-timeGridDay-view .fc-timegrid-cols,
+.fc-resource-timeGridWeek-view .fc-timegrid-cols {
+  border-right: 3px solid #6b7280 !important;
+}
+
+/* Ensure appointments don't overlap with dividers */
+.fc-resource-timeGridDay-view .fc-timegrid-event,
+.fc-resource-timeGridWeek-view .fc-timegrid-event {
+  margin: 1px 3px !important;
+  width: calc(100% - 6px) !important;
+  box-sizing: border-box !important;
+}
+
+/* Force column dividers to always be visible in the main calendar grid */
+.fc-resource-timeGridDay-view .fc-timegrid-body .fc-timegrid-col::after,
+.fc-resource-timeGridWeek-view .fc-timegrid-body .fc-timegrid-col::after,
+.fc-timeGridDay-view .fc-timegrid-body .fc-timegrid-col::after,
+.fc-timeGridWeek-view .fc-timegrid-body .fc-timegrid-col::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 8px !important;
+  height: 100vh !important;
+  min-height: 100% !important;
+  background: linear-gradient(to bottom, #ef4444 0%, #dc2626 50%, #ef4444 100%) !important;
+  z-index: 9999 !important;
+  pointer-events: none !important;
+  transform: translateZ(0) !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.6) !important;
+  border-radius: 4px !important;
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-body .fc-timegrid-col:last-child::after,
+.fc-resource-timeGridWeek-view .fc-timegrid-body .fc-timegrid-col:last-child::after {
+  display: none !important;
+}
+
+/* Ensure the main calendar grid has clear visual separation */
+.fc-resource-timeGridDay-view .fc-timegrid,
+.fc-resource-timeGridWeek-view .fc-timegrid,
+.fc-timeGridDay-view .fc-timegrid,
+.fc-timeGridWeek-view .fc-timegrid {
+  border-right: 8px solid #ef4444 !important;
+}
+
+
+
+/* Force column dividers to always be visible and prominent */
+.fc-resource-timeGridDay-view .fc-timegrid-body .fc-timegrid-col::after,
+.fc-resource-timeGridWeek-view .fc-timegrid-body .fc-timegrid-col::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 4px !important;
+  height: 100% !important;
+  background: linear-gradient(to bottom, #8b5cf6 0%, #7c3aed 50%, #8b5cf6 100%) !important;
+  z-index: 1000 !important;
+  pointer-events: none !important;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.3) !important;
+  transform: translateZ(0) !important;
+  border-radius: 2px !important;
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-body .fc-timegrid-col:last-child::after,
+.fc-resource-timeGridWeek-view .fc-timegrid-body .fc-timegrid-col:last-child::after {
+  display: none !important;
+}
+
+/* Ensure column dividers are always visible with consistent styling */
+.fc-resource-timeGridDay-view .fc-timegrid-col::after,
+.fc-resource-timeGridWeek-view .fc-timegrid-col::after {
+  background: #e5e7eb !important;
+  box-shadow: none !important;
+  width: 1px !important;
+}
+
+/* Ensure custom column dividers are always visible with consistent styling */
+.fc-resource-timeGridDay-view .fc-timegrid-col .custom-column-divider,
+.fc-resource-timeGridWeek-view .fc-timegrid-col .custom-column-divider {
+  background: #e5e7eb !important;
+  box-shadow: none !important;
+  width: 1px !important;
+}
+
+/* Ensure column dividers are visible in header area */
+.fc-resource-timeGridDay-view .fc-timegrid-col-header,
+.fc-resource-timeGridWeek-view .fc-timegrid-col-header {
+  border-right: 1px solid #e5e7eb !important;
+  position: relative !important;
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-col-header:last-child,
+.fc-resource-timeGridWeek-view .fc-timegrid-col-header:last-child {
+  border-right: none !important;
+}
+
+/* Ensure header and grid columns are properly aligned */
+.fc-resource-timeGridDay-view .fc-timegrid-cols,
+.fc-resource-timeGridWeek-view .fc-timegrid-cols {
+  display: flex !important;
+  width: 100% !important;
+}
+
+.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc-resource-timeGridWeek-view .fc-timegrid-col {
+  flex: 1 !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure custom header matches grid layout */
+.custom-staff-header {
+  display: flex !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.custom-staff-header > div {
+  flex: 1 !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Dynamic column width distribution - flexible approach */
+.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc-resource-timeGridWeek-view .fc-timegrid-col {
+  flex: 1 !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure proper flex distribution */
+.fc-resource-timeGridDay-view .fc-timegrid-cols,
+.fc-resource-timeGridWeek-view .fc-timegrid-cols {
+  display: flex !important;
+  width: 100% !important;
+}
+
+/* Clean column separation - just subtle borders */
+.fc-timegrid-col {
+  border-right: 2px solid #e5e7eb !important;
+  position: relative !important;
+}
+
+.fc-timegrid-col:last-child {
+  border-right: none !important;
+}
+
+/* Clean column dividers - thin and grey like header */
+.custom-column-divider {
+  position: absolute !important;
+  top: 0 !important;
+  width: 1px !important;
+  height: 100% !important;
+  background: #e5e7eb !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  transform: translateZ(0) !important; /* Force hardware acceleration */
+}
+
+/* Responsive column dividers that scale with zoom */
+.custom-column-divider-relative {
+  position: relative !important;
+  width: 1px !important;
+  height: 100% !important;
+  background: #e5e7eb !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  right: 0 !important;
+  top: 0 !important;
+}
+
+/* Ensure modals and popups appear above column dividers */
+[role="dialog"],
+.modal,
+.appointment-detail-modal,
+.appointment-panel,
+.quick-actions-popup,
+.date-picker-popup,
+.add-menu-popup,
+.worker-menu-popup,
+.popup,
+.overlay {
+  z-index: 9999 !important;
+  position: relative !important;
+}
+
+/* Remove alternating backgrounds for clean look */
+.fc-timegrid-col:nth-child(odd) {
+  background-color: transparent !important;
+}
+
+.fc-timegrid-col:nth-child(even) {
+  background-color: transparent !important;
+}
+
+/* Clean calendar borders */
+.fc {
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+}
+
+.fc-view {
+  border: none !important;
+}
+
+.fc-scrollgrid {
+  border: none !important;
+}
+
+/* FINAL OVERRIDE: Ensure cell-specific hover only - disable all row-based hover effects */
+.fc-timegrid-slot-lane:hover,
+.fc-timegrid-slot-label:hover,
+.fc-timegrid tr:hover,
+.fc-timegrid tbody tr:hover,
+.fc-timegrid-slot:hover ~ *,
+.fc-timegrid-slot-lane:hover ~ * {
+  background-color: transparent !important;
+}
+
+/* Ensure that hovering on any time slot element only affects that specific cell */
+.fc-timegrid-slot-lane:hover,
+.fc-timegrid-slot-label:hover {
+  background-color: transparent !important;
+}
+
+/* CELL-SPECIFIC HOVER: Only allow individual time slot hover effects */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:hover,
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Ensure that only the specific time slot being hovered gets the highlight */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:not(:hover),
+.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover) {
+  background-color: transparent !important;
+}
+
+/* ULTRA-AGGRESSIVE OVERRIDE: Completely disable ALL row-based hover effects */
+.fc-timegrid-slot-lane:hover,
+.fc-timegrid-slot-label:hover,
+.fc-timegrid tr:hover,
+.fc-timegrid tbody tr:hover,
+.fc-timegrid-slot:hover ~ *,
+.fc-timegrid-slot-lane:hover ~ *,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot,
+.fc-timegrid-slot-lane:hover ~ .fc-timegrid-slot,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot-lane,
+.fc-timegrid-slot-lane:hover ~ .fc-timegrid-slot-lane,
+.fc-timegrid tr:hover .fc-timegrid-slot,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot,
+.fc-timegrid tr:hover .fc-timegrid-slot-lane,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot-lane {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Disable any FullCalendar default highlight classes */
+.fc-highlight,
+.fc-highlight-skeleton,
+.fc-highlight-more,
+.fc-highlight-more-cell {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* CELL-SPECIFIC HOVER: Ensure that ONLY the specific time slot being hovered gets any background */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:hover,
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Ensure that only the specific time slot being hovered gets the highlight */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:not(:hover),
+.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* CRITICAL: Ensure ALL other time slots remain completely transparent */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:not(:hover),
+.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Override any potential FullCalendar default hover styles with maximum specificity */
+.fc.fc-resource-timeGridDay-view .fc-timegrid-slot:hover,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-slot:hover,
+.fc.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:hover,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:hover,
+.fc.fc-resource-timeGridDay-view .fc-timegrid tr:hover,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid tr:hover,
+.fc.fc-resource-timeGridDay-view .fc-timegrid tbody tr:hover,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid tbody tr:hover {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Ensure all columns remain transparent by default */
+.fc.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-col {
+  background-color: transparent !important;
+}
+
+.fc.fc-resource-timeGridDay-view .fc-timegrid-col .fc-timegrid-slot,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-col .fc-timegrid-slot,
+.fc.fc-resource-timeGridDay-view .fc-timegrid-col .fc-timegrid-slot-lane,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-col .fc-timegrid-slot-lane {
+  background-color: transparent !important;
+}
+
+/* Ensure all columns and their slots remain completely transparent */
+.fc.fc-resource-timeGridDay-view .fc-timegrid-col,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-col,
+.fc.fc-resource-timeGridDay-view .fc-timegrid-col .fc-timegrid-slot,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-col .fc-timegrid-slot,
+.fc.fc-resource-timeGridDay-view .fc-timegrid-col .fc-timegrid-slot-lane,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-col .fc-timegrid-slot-lane {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* FINAL OVERRIDE: Disable ALL possible hover effects except cell-specific ones */
+*[class*="fc-timegrid"]:hover:not(.fc-timegrid-slot-lane:hover),
+.fc-timegrid-slot:hover,
+.fc-timegrid-slot-label:hover {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* TRANSFORM TABLE STRUCTURE TO INDIVIDUAL CELLS */
+/* Completely override FullCalendar's table structure */
+.fc-timegrid-slot {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  min-height: 30px !important;
+}
+
+/* Create individual cell containers for each column */
+.fc-timegrid-slot-lane {
+  position: relative !important;
+  display: flex !important;
+  flex: 1 !important;
+  min-height: 30px !important;
+  border-right: 1px solid #e5e7eb !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+}
+
+/* Make each lane act as an individual cell */
+.fc-timegrid-slot-lane:last-child {
+  border-right: none !important;
+}
+
+/* CELL-SPECIFIC HOVER: Only allow individual time slot lane hover effects */
+.fc-timegrid-slot-lane:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Ensure other lanes don't get highlighted when hovering over one */
+.fc-timegrid-slot-lane:not(:hover) {
+  background-color: transparent !important;
+}
+
+/* Override FullCalendar's table-based structure */
+.fc-timegrid-slot-lane {
+  display: flex !important;
+  flex: 1 !important;
+  position: relative !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+/* Force grid layout instead of table layout */
+.fc-timegrid-slot {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, 1fr) !important;
+  width: 100% !important;
+}
+
+/* Ensure each lane is treated as a separate cell */
+.fc-timegrid-slot-lane {
+  grid-column: auto !important;
+  position: relative !important;
+}
+
+/* ULTRA-AGGRESSIVE FINAL OVERRIDE: Completely disable ALL row-based hover effects with maximum specificity */
+.fc-timegrid tr:hover,
+.fc-timegrid tbody tr:hover,
+.fc-timegrid-slot-lane:hover,
+.fc-timegrid-slot-label:hover,
+.fc-timegrid-slot:hover ~ *,
+.fc-timegrid-slot-lane:hover ~ *,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot,
+.fc-timegrid-slot-lane:hover ~ .fc-timegrid-slot,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot-lane,
+.fc-timegrid-slot-lane:hover ~ .fc-timegrid-slot-lane,
+.fc-timegrid tr:hover .fc-timegrid-slot,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot,
+.fc-timegrid tr:hover .fc-timegrid-slot-lane,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot-lane,
+.fc-timegrid tr:hover .fc-timegrid-slot-label,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot-label,
+.fc-timegrid-slot:hover .fc-timegrid-slot-lane,
+.fc-timegrid-slot-lane:hover .fc-timegrid-slot-label,
+.fc-timegrid-slot:hover .fc-timegrid-slot-label,
+.fc-timegrid-slot-lane:hover .fc-timegrid-slot-label,
+.fc-highlight,
+.fc-highlight-skeleton,
+.fc-highlight-more,
+.fc-highlight-more-cell,
+.fc-timegrid-slot.fc-highlight,
+.fc-timegrid-slot-lane.fc-highlight,
+.fc-timegrid-slot-label.fc-highlight,
+.fc-timegrid tr.fc-highlight,
+.fc-timegrid tbody tr.fc-highlight {
+  background-color: transparent !important;
+  background: transparent !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  background-origin: unset !important;
+  background-size: unset !important;
+  background-repeat: unset !important;
+  background-position: unset !important;
+  background-attachment: unset !important;
+}
+
+/* CELL-SPECIFIC HOVER: Only allow individual time slot lane hover effects with maximum specificity */
+.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:hover,
+.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:hover,
+.fc-timeGridDay-view .fc-timegrid-slot-lane:hover,
+.fc-timeGridWeek-view .fc-timegrid-slot-lane:hover,
+.fc.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:hover,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:hover,
+.fc.fc-timeGridDay-view .fc-timegrid-slot-lane:hover,
+.fc.fc-timeGridWeek-view .fc-timegrid-slot-lane:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Ensure that only the specific time slot lane being hovered gets the highlight with maximum specificity */
+.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover),
+.fc-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover),
+.fc.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover),
+.fc.fc-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc.fc-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Cell-specific hover using JavaScript-added class */
+.fc-timegrid-slot.cell-hovered {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Cell-specific hover using JavaScript-added class */
+.fc-timegrid-slot-lane.cell-hovered {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Ensure non-hovered cells remain transparent */
+.fc-timegrid-slot-lane:not(.cell-hovered) {
+  background-color: transparent !important;
+}
+
+/* Force individual cell structure */
+.fc-timegrid-slot {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+}
+
+.fc-timegrid-slot-lane {
+  flex: 1 !important;
+  position: relative !important;
+  min-height: 30px !important;
+  border-right: 1px solid #e5e7eb !important;
+  box-sizing: border-box !important;
+}
+
+.fc-timegrid-slot-lane:last-child {
+  border-right: none !important;
+}
+
+/* Ensure events are properly contained within their lanes */
+.fc-timegrid-event {
+  margin: 1px !important;
+  width: calc(100% - 2px) !important;
+  box-sizing: border-box !important;
+}
+
+/* NUCLEAR OPTION: COMPLETELY DISABLE ALL ROW HOVER EFFECTS */
+/* Force individual cell hover only - NO ROW HIGHLIGHTING */
+.fc-timegrid-slot {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.fc-timegrid-slot:hover {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.fc-timegrid-slot:not(:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* ONLY allow individual lane hover */
+.fc-timegrid-slot-lane {
+  position: relative !important;
+  display: flex !important;
+  flex: 1 !important;
+  min-height: 30px !important;
+  border-right: 1px solid #e5e7eb !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.fc-timegrid-slot-lane:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  background: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.fc-timegrid-slot-lane:not(:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* DISABLE ALL ROW-BASED HOVER EFFECTS WITH MAXIMUM SPECIFICITY */
+.fc-timegrid tr:hover,
+.fc-timegrid tbody tr:hover,
+.fc-timegrid-slot:hover,
+.fc-timegrid-slot:hover ~ *,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot-lane,
+.fc-timegrid tr:hover .fc-timegrid-slot,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot,
+.fc-timegrid tr:hover .fc-timegrid-slot-lane,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot-lane {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* ULTRA-AGGRESSIVE: OVERRIDE FULLCALENDAR'S DEFAULT HOVER BEHAVIOR */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:hover,
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:hover,
+.fc-timeGridDay-view .fc-timegrid-slot:hover,
+.fc-timeGridWeek-view .fc-timegrid-slot:hover {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* FORCE INDIVIDUAL CELL HOVER ONLY */
+.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:hover,
+.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:hover,
+.fc-timeGridDay-view .fc-timegrid-slot-lane:hover,
+.fc-timeGridWeek-view .fc-timegrid-slot-lane:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  background: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* ENSURE ALL OTHER CELLS REMAIN TRANSPARENT */
+.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover),
+.fc-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* NUCLEAR OPTION: COMPLETELY DISABLE ALL POSSIBLE ROW HOVER EFFECTS */
+.fc.fc-resource-timeGridDay-view .fc-timegrid-slot:hover,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-slot:hover,
+.fc.fc-timeGridDay-view .fc-timegrid-slot:hover,
+.fc.fc-timeGridWeek-view .fc-timegrid-slot:hover,
+.fc.fc-resource-timeGridDay-view .fc-timegrid tr:hover,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid tr:hover,
+.fc.fc-timeGridDay-view .fc-timegrid tr:hover,
+.fc.fc-timeGridWeek-view .fc-timegrid tr:hover {
+  background-color: transparent !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* FORCE INDIVIDUAL CELL HOVER WITH MAXIMUM SPECIFICITY */
+.fc.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:hover,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:hover,
+.fc.fc-timeGridDay-view .fc-timegrid-slot-lane:hover,
+.fc.fc-timeGridWeek-view .fc-timegrid-slot-lane:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  background: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* ENSURE ALL OTHER CELLS REMAIN TRANSPARENT WITH MAXIMUM SPECIFICITY */
+.fc.fc-resource-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover),
+.fc.fc-timeGridDay-view .fc-timegrid-slot-lane:not(:hover),
+.fc.fc-timeGridWeek-view .fc-timegrid-slot-lane:not(:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* FINAL NUCLEAR OPTION: DISABLE ALL HOVER EFFECTS EXCEPT INDIVIDUAL CELLS */
+*[class*="fc-timegrid"]:hover:not(.fc-timegrid-slot-lane:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* FORCE INDIVIDUAL CELL HOVER ONLY - NO EXCEPTIONS */
+.fc-timegrid-slot-lane:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  background: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* ALL OTHER ELEMENTS MUST BE TRANSPARENT */
+.fc-timegrid-slot-lane:not(:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Disable all row-based hover effects completely */
+.fc-timegrid-slot-lane:hover,
+.fc-timegrid-slot-label:hover,
+.fc-timegrid tr:hover,
+.fc-timegrid tbody tr:hover,
+.fc-timegrid-slot:hover ~ *,
+.fc-timegrid-slot-lane:hover ~ *,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot,
+.fc-timegrid-slot-lane:hover ~ .fc-timegrid-slot,
+.fc-timegrid-slot:hover ~ .fc-timegrid-slot-lane,
+.fc-timegrid-slot-lane:hover ~ .fc-timegrid-slot-lane,
+.fc-timegrid tr:hover .fc-timegrid-slot,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot,
+.fc-timegrid tr:hover .fc-timegrid-slot-lane,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot-lane,
+.fc-timegrid tr:hover .fc-timegrid-slot-label,
+.fc-timegrid tbody tr:hover .fc-timegrid-slot-label,
+.fc-timegrid-slot:hover .fc-timegrid-slot-lane,
+.fc-timegrid-slot-lane:hover .fc-timegrid-slot-label,
+.fc-timegrid-slot:hover .fc-timegrid-slot-label,
+.fc-timegrid-slot-lane:hover .fc-timegrid-slot-label,
+.fc-highlight,
+.fc-highlight-skeleton,
+.fc-highlight-more,
+.fc-highlight-more-cell,
+.fc-timegrid-slot.fc-highlight,
+.fc-timegrid-slot-lane.fc-highlight,
+.fc-timegrid-slot-label.fc-highlight,
+.fc-timegrid tr.fc-highlight,
+.fc-timegrid tbody tr.fc-highlight {
+  background-color: transparent !important;
+  background: transparent !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  background-origin: unset !important;
+  background-size: unset !important;
+  background-repeat: unset !important;
+  background-position: unset !important;
+  background-attachment: unset !important;
+}
+
+/* FINAL CELL-SPECIFIC HOVER: Only allow individual time slot hover effects with maximum specificity */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:hover,
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:hover,
+.fc-timeGridDay-view .fc-timegrid-slot:hover,
+.fc-timeGridWeek-view .fc-timegrid-slot:hover,
+.fc.fc-resource-timeGridDay-view .fc-timegrid-slot:hover,
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-slot:hover,
+.fc.fc-timeGridDay-view .fc-timegrid-slot:hover,
+.fc.fc-timeGridWeek-view .fc-timegrid-slot:hover {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Ensure that only the specific time slot being hovered gets the highlight with maximum specificity */
+.fc-resource-timeGridDay-view .fc-timegrid-slot:not(:hover),
+.fc-resource-timeGridWeek-view .fc-timegrid-slot:not(:hover),
+.fc-timeGridDay-view .fc-timegrid-slot:not(:hover),
+.fc-timeGridWeek-view .fc-timegrid-slot:not(:hover),
+.fc.fc-resource-timeGridDay-view .fc-timegrid-slot:not(:hover),
+.fc.fc-resource-timeGridWeek-view .fc-timegrid-slot:not(:hover),
+.fc.fc-timeGridDay-view .fc-timegrid-slot:not(:hover),
+.fc.fc-timeGridWeek-view .fc-timegrid-slot:not(:hover) {
+  background-color: transparent !important;
+  background: transparent !important;
+}

@@ -1,0 +1,391 @@
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* your custom globals */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Safe area support for mobile devices */
+@supports (padding: max(0px)) {
+  .safe-area-bottom {
+    padding-bottom: max(32px, calc(24px + env(safe-area-inset-bottom)));
+  }
+  
+  .safe-area-top {
+    padding-top: max(24px, env(safe-area-inset-top));
+  }
+}
+
+/* Blocked time event styling */
+.blocked-time-event {
+  background-color: #6b7280 !important;
+  border-color: #4b5563 !important;
+  color: #ffffff !important;
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.blocked-time-event:hover {
+  background-color: #6b7280 !important;
+  border-color: #4b5563 !important;
+  opacity: 0.9;
+}
+
+/* Blocked time slot styling */
+.blocked-slot {
+  background-color: #f3f4f6 !important;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.blocked-slot:hover {
+  background-color: #f3f4f6 !important;
+  cursor: not-allowed;
+}
+
+/* Prevent appointments on blocked slots */
+.blocked-slot .fc-timegrid-slot-label {
+  color: #9ca3af !important;
+}
+
+/* Custom styling for blocked time events in calendar */
+.fc-event.blocked-time-event {
+  background-color: #6b7280 !important;
+  border-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+.fc-event.blocked-time-event .fc-event-title {
+  color: #ffffff !important;
+}
+
+.fc-event.blocked-time-event .fc-event-time {
+  color: #e5e7eb !important;
+}
+
+/* Styling for workers blocked all day */
+.fc-resource-header-blocked {
+  background-color: #f3f4f6 !important;
+  opacity: 0.6;
+}
+
+.fc-resource-header-blocked .fc-resource-header-title {
+  color: #9ca3af !important;
+  font-style: italic;
+}
+
+.fc-resource-header-blocked::after {
+  content: " (Blocked)";
+  color: #ef4444;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+/* Date picker styling and positioning */
+input[type="date"] {
+  position: relative;
+  z-index: 10;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* General mobile adjustments */
+  body {
+    font-size: 14px;
+  }
+  
+  /* Mobile container adjustments */
+  .mobile-container {
+    padding: 16px;
+    max-width: 100%;
+  }
+  
+  /* Mobile card adjustments */
+  .mobile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mobile button adjustments */
+  .mobile-button {
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Mobile form adjustments */
+  .mobile-input {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+  }
+  
+  .mobile-select {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+  }
+  
+  /* Mobile table adjustments */
+  .mobile-table {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .mobile-table th,
+  .mobile-table td {
+    padding: 8px 4px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  
+  /* Mobile navigation adjustments */
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 8px 0;
+    z-index: 1000;
+  }
+  
+  /* Mobile modal adjustments */
+  .mobile-modal {
+    width: 95vw;
+    max-width: 95vw;
+    height: 90vh;
+    max-height: 90vh;
+    margin: 5vh auto;
+    border-radius: 12px;
+    overflow-y: auto;
+  }
+  
+  /* Mobile popup adjustments */
+  .mobile-popup {
+    width: 90vw;
+    max-width: 90vw;
+    left: 5vw;
+    right: 5vw;
+    transform: none;
+    border-radius: 12px;
+  }
+  
+  /* Mobile list adjustments */
+  .mobile-list {
+    padding: 16px 0;
+  }
+  
+  .mobile-list-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  /* Mobile header adjustments */
+  .mobile-header {
+    padding: 12px 16px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  /* Mobile search adjustments */
+  .mobile-search {
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+  
+  /* Mobile filter adjustments */
+  .mobile-filter {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+  
+  /* Mobile stats adjustments */
+  .mobile-stats {
+    display: flex;
+    gap: 12px;
+    margin: 12px 0;
+  }
+  
+  .mobile-stat {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mobile avatar adjustments */
+  .mobile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  /* Mobile action buttons */
+  .mobile-action {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    min-height: 32px;
+  }
+  
+  /* Mobile floating action button */
+  .mobile-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  
+  /* Mobile tab adjustments */
+  .mobile-tabs {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+  
+  .mobile-tab {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    margin-right: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  
+  /* Mobile grid adjustments */
+  .mobile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  /* Mobile sidebar adjustments */
+  .mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    background: white;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-sidebar.open {
+    transform: translateX(0);
+  }
+  
+  /* Mobile overlay */
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  /* Mobile scrollbar */
+  .mobile-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .mobile-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .mobile-scrollbar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 2px;
+  }
+}
+
+/* Ensure date picker popup is properly positioned */
+input[type="date"]::-webkit-datetime-edit {
+  padding: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+  padding: 0 2px;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  padding: 0;
+}
+
+/* Appointment panel improvements */
+.appointment-panel {
+  overflow: visible !important;
+}
+
+.appointment-panel .appointment-panel-slide {
+  overflow: visible !important;
+}
+
+/* Ensure date picker popup appears above other elements */
+.appointment-panel input[type="date"]:focus {
+  z-index: 1001;
+}
